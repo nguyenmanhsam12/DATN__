@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -45,4 +46,19 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        // Kiểm tra loại ngoại lệ là ValidationException
+        if ($exception instanceof ValidationException) {
+            return response()->json([
+                'errors' => $exception->errors(),
+            ], 400); // Trả về mã lỗi 400
+        }
+
+        // Gọi phương thức render của cha để xử lý các lỗi khác
+        return parent::render($request, $exception);
+    }
+
+    
 }
