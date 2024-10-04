@@ -6,6 +6,8 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductVariantController;
+use App\Http\Controllers\API\ReviewAdminController;
+use App\Http\Controllers\API\ReviewsController;
 use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -30,6 +32,9 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 Route::put('/update',[AuthController::class,'update'])->middleware('auth:sanctum');
+
+Route::post('/storeReviews',[ReviewsController::class,'store'])->middleware('auth:sanctum');
+Route::get('/detailReview/{id}',[ReviewsController::class,'getDetail'])->middleware('auth:sanctum');
 
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() {
@@ -92,6 +97,11 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/getDetailVariant/{id}', [ProductVariantController::class, 'getDetailVariant']);
 
        
+    });
+    Route::prefix('reviews')->group(function() {
+        
+        Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
+        Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
 
 });
