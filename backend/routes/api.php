@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Api\CartController;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BrandController;
@@ -103,6 +104,8 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
+    Route::resource('carts', CartController::class);
+    Route::put('/cart/update-cart', [CartController::class, 'updateCart']);
 
 });
 
