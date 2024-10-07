@@ -6,6 +6,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductVariantController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -32,11 +33,19 @@ Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctu
 Route::put('/update',[AuthController::class,'update'])->middleware('auth:sanctum');
 
 
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+
+
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() {
 
     Route::prefix('users')->group(function(){
         Route::get('/', [UserController::class, 'index']);
         Route::post('/add-user', [UserController::class, 'store']);
+        Route::put('/update-user/{id}', [UserController::class, 'updateUser']);
+        Route::delete('/delete-user/{id}', [UserController::class, 'deleteUser']);
+        Route::get('/detail-user/{id}', [UserController::class, 'detailUser']);
+
     });
 
     Route::prefix('categories')->group(function(){
@@ -92,6 +101,14 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/getDetailVariant/{id}', [ProductVariantController::class, 'getDetailVariant']);
 
        
+    });
+
+    Route::prefix('roles')->group(function(){
+        Route::get('/',[RoleController::class,'index']);
+        Route::post('/storeRoles',[RoleController::class,'storeRoles']);
+        Route::put('/updateRoles/{id}',[RoleController::class,'updateRoles']);
+        Route::delete('/deleteRole/{id}',[RoleController::class,'deleteRole']);     
+        Route::get('/getDetailRole/{id}',[RoleController::class,'getDetailRole']);    
     });
 
 });
