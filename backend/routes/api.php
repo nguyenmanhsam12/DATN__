@@ -108,7 +108,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
        
     });
     Route::prefix('reviews')->group(function() {
-        
         Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
