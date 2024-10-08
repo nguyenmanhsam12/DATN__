@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $products = Product::with(['brand', 'category', 'images'])->get();
+            $products = Product::with(['brand', 'category'])->get();
             return response()->json([
                 'message' => 'Lấy dữ liệu thành công',
                 'data' => $products,
@@ -53,32 +53,12 @@ class ProductController extends Controller
             $product = Product::create([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
-                'price' => $validatedData['price'],
                 'brand_id' => $validatedData['brand_id'],
                 'category_id' => $validatedData['category_id'],
                 'user_id' => auth()->id(),  // ID của người dùng hiện tại
             ]);
 
-            // Xử lý lưu ảnh sản phẩm
-            $imageFiles = $request->file('image_path'); // Lấy danh sách ảnh từ form
-
-            if ($imageFiles) {
-                foreach ($imageFiles as $index => $image) {
-
-                    // Lưu ảnh vào thư mục 'public/products'
-                    $imagePath = $image->store('products', 'public');
-
-                    // Mặc định ảnh đầu tiên là ảnh chính
-                    $isPrimary = ($index == 0) ? 1 : 0;
-
-                    // Lưu thông tin ảnh vào bảng product_images
-                    ProductImage::create([
-                        'product_id' => $product->id,
-                        'image_path' => $imagePath,
-                        'is_primary' => $isPrimary,
-                    ]);
-                }
-            }
+            
 
             return response()->json([
                 'message' => 'Thêm mới thành công',
@@ -106,7 +86,7 @@ class ProductController extends Controller
     public function getDetailProduct($id)
     {
         try {
-            $productDetail = Product::with(['images', 'variants.size', 'variants.color'])->findOrFail($id);
+            $productDetail = Product::with(['variants.size', 'variants.color','variants.images'])->findOrFail($id);
 
             return response()->json([
                 'message' => 'Thành công',
@@ -139,45 +119,15 @@ class ProductController extends Controller
 
             $validatedData = $request->validated();
 
-
-
             $product->update([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
-                'price' => $validatedData['price'],
                 'brand_id' => $validatedData['brand_id'],
                 'category_id' => $validatedData['category_id'],
                 'user_id' => auth()->id(),  // ID của người dùng hiện tại
             ]);
 
-            // Kiểm tra xem có ảnh mới được gửi không
-            if ($request->hasFile('image_path')) {
-                $imageFiles = $request->file('image_path'); // Lấy danh sách ảnh từ form
-
-                // Xóa ảnh cũ
-                $existingImages = ProductImage::where('product_id', $product->id)->get();
-
-                foreach ($existingImages as $existingImage) {
-                    // Xóa ảnh trong thư mục storage
-                    if (Storage::disk('public')->exists($existingImage->image_path)) {
-                        Storage::disk('public')->delete($existingImage->image_path);
-                    }
-                    // Xóa ảnh trong cơ sở dữ liệu
-                    $existingImage->delete();
-                }
-
-                // Lưu ảnh mới
-                foreach ($imageFiles as $index => $image) {
-                    $imagePath = $image->store('products', 'public');
-                    $isPrimary = ($index == 0) ? 1 : 0;
-
-                    ProductImage::create([
-                        'product_id' => $product->id,
-                        'image_path' => $imagePath,
-                        'is_primary' => $isPrimary,
-                    ]);
-                }
-            }
+         
 
             return response()->json([
                 'message' => 'Cập nhập thành công',
@@ -209,19 +159,7 @@ class ProductController extends Controller
             // Tìm sản phẩm theo ID
             $product = Product::findOrFail($id);
 
-            // Lấy danh sách ảnh liên quan đến sản phẩm
-            $existingImages = ProductImage::where('product_id', $product->id)->get();
-
-            // Xóa ảnh khỏi cơ sở dữ liệu và thư mục storage
-            foreach ($existingImages as $existingImage) {
-                // Xóa ảnh trong thư mục storage
-                if (Storage::disk('public')->exists($existingImage->image_path)) {
-                    Storage::disk('public')->delete($existingImage->image_path);
-                }
-                // Xóa ảnh trong cơ sở dữ liệu
-                $existingImage->delete();
-            }
-
+           
             // Xóa các biến thể liên quan đến sản phẩm
             $variants = ProductVariant::where('product_id', $product->id)->get();
             foreach ($variants as $variant) {

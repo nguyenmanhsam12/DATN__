@@ -17,6 +17,7 @@ class ProductVariant extends Model
         'color_id',
         'sku',
         'stock',
+        'price',
         'selled',
     ];
 
@@ -33,6 +34,10 @@ class ProductVariant extends Model
     public function color()
     {
         return $this->belongsTo(Color::class);
+    }
+
+    public function images(){
+        return $this->hasMany(ProductImage::class);
     }
 
 }
