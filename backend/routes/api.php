@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductVariantController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\ReviewAdminController;
 use App\Http\Controllers\API\ReviewsController;
 use App\Http\Controllers\API\SizeController;
@@ -38,11 +39,19 @@ Route::post('/storeReviews',[ReviewsController::class,'store'])->middleware('aut
 Route::get('/detailReview/{id}',[ReviewsController::class,'getDetail'])->middleware('auth:sanctum');
 
 
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+
+
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() {
 
     Route::prefix('users')->group(function(){
         Route::get('/', [UserController::class, 'index']);
         Route::post('/add-user', [UserController::class, 'store']);
+        Route::put('/update-user/{id}', [UserController::class, 'updateUser']);
+        Route::delete('/delete-user/{id}', [UserController::class, 'deleteUser']);
+        Route::get('/detail-user/{id}', [UserController::class, 'detailUser']);
+
     });
 
     Route::prefix('categories')->group(function(){
@@ -100,12 +109,19 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
        
     });
     Route::prefix('reviews')->group(function() {
-        
         Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
     Route::resource('carts', CartController::class);
     Route::put('/cart/update-cart', [CartController::class, 'updateCart']);
+
+    Route::prefix('roles')->group(function(){
+        Route::get('/',[RoleController::class,'index']);
+        Route::post('/storeRoles',[RoleController::class,'storeRoles']);
+        Route::put('/updateRoles/{id}',[RoleController::class,'updateRoles']);
+        Route::delete('/deleteRole/{id}',[RoleController::class,'deleteRole']);     
+        Route::get('/getDetailRole/{id}',[RoleController::class,'getDetailRole']);    
+    });
 
 });
 
