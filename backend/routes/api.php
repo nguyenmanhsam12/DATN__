@@ -11,6 +11,7 @@ use App\Http\Controllers\API\ReviewAdminController;
 use App\Http\Controllers\API\ReviewsController;
 use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -120,5 +121,21 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/getDetailRole/{id}',[RoleController::class,'getDetailRole']);    
     });
 
+    Route::prefix('AdminWishlists')->group(function(){
+        Route::get('/',[WishlistController::class,'index']);
+        Route::post('/storeWishlists',[WishlistController::class,'storeWishlists']);
+        Route::delete('/deleteWishlists/{product_id}',[WishlistController::class,'deleteWishlists']);     
+       
+    });
 });
 
+Route::prefix('wishlists')->group(function(){
+    // Lấy danh sách sản phẩm trong wishlist của người dùng
+    Route::get('/', [WishlistController::class, 'index'])->middleware('auth:sanctum');
+
+    // Thêm sản phẩm vào wishlist
+    Route::post('/storeWishlists', [WishlistController::class, 'storeWishlists'])->middleware('auth:sanctum');
+
+    // Xóa sản phẩm khỏi wishlist
+    Route::delete('/deleteWishlists/{product_id}', [WishlistController::class, 'deleteWishlists'])->middleware('auth:sanctum');
+});
