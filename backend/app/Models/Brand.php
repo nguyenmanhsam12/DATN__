@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Category extends Model
+class Brand extends Model
 {
     use HasFactory , HasSlug ;
 
-    protected $table = 'categories';
+    protected $table = 'brands';
 
-    protected $fillable = ['name','parent_id'];
+    protected $fillable = ['name','slug'];
 
     public function getSlugOptions() : SlugOptions
     {
