@@ -19,9 +19,14 @@ class CartCollection extends ResourceCollection
                 return [
                     'id' => $cart->id,
                     'user_id' => $cart->user_id,
-                    'product_variant_id' => $cart->product_variant_id,
-                    'quantity' => $cart->quantity,
-                    'price' => $cart->price,
+                    'cart_items' => $cart->cartItems->map(function($cartItem) {
+                        return [
+                            'id' => $cartItem->id,
+                            'product_variant_id' => $cartItem->product_variant_id,
+                            'quantity' => $cartItem->quantity,
+                            'price' =>$cartItem?->productVariant?->product?->price,
+                        ];
+                    }),
                     'created_at' => $cart->created_at,
                     'updated_at' => $cart->updated_at,
                 ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductVariantController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\ReviewAdminController;
@@ -112,9 +113,13 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
+    
     Route::resource('carts', CartController::class);
     Route::put('/cart/update-cart', [CartController::class, 'updateCart']);
-
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::post('/store', [OrderController::class, 'store']);
+    });
     Route::prefix('roles')->group(function(){
         Route::get('/',[RoleController::class,'index']);
         Route::post('/storeRoles',[RoleController::class,'storeRoles']);
@@ -124,4 +129,5 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
     });
 
 });
+Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');
 

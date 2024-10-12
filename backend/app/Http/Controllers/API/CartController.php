@@ -89,8 +89,8 @@ class CartController extends Controller
     {
         $user = auth()->user();
         $cartItemsData = $request->input('cart_items');
-        $productIdsToDelete = $request->input('product_ids_to_delete', []);
-        $updatedItems = $this->cart->updateCart($user->id, $cartItemsData, $productIdsToDelete);
+        $cartItemIdsToDelete = $request->input('cart_item_ids_to_delete', []);
+        $updatedItems = $this->cart->updateCart($user->id, $cartItemsData, $cartItemIdsToDelete);
 
         return response()->json([
             'message' => 'Giỏ hàng đã được cập nhật!',
