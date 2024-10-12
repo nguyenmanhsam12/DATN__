@@ -1,35 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useRoutes } from 'react-router-dom'
+import Admin from './pages/Admin'
+import ListProduct from './components/Admin/products/product-list'
+import UserList from './components/Admin/user/user-list'
+import EditUser from './components/Admin/user/edit-user'
+import CouponList from './components/Admin/coupons/list-coupon'
+import AddCoupon from './components/Admin/coupons/add-coupon'
+import UsageReport from './components/Admin/coupons/usageReport'
+import EditCoupon from './components/Admin/coupons/edit-coupon'
+import Statistics from './components/Admin/coupons/statistic'
+import AddProduct from './components/Admin/products/product-add'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = useRoutes ([
+    {path:'dashboard', element:<Admin/>,children:[
+      // User
+      {path:'list-user',element:<UserList/>},
+      {path:'edit-user',element:<EditUser/>},
+      // 
+      {path:'list-product',element:<ListProduct/>},
+      {path:'add-product',element:<AddProduct/>},
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      // coupons
+      {path:'coupon-list',element:<CouponList/>},
+      {path:'coupon-add',element:<AddCoupon/>},
+      {path:'coupon-edit',element:<EditCoupon/>},
+      {path:'coupon-usagereport',element:<UsageReport/>},
+      {path:'coupon-statistic',element:<Statistics/>},
+
+    ]}
+  ])
+  return router
 }
 
 export default App
