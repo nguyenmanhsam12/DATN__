@@ -1,19 +1,16 @@
 <?php
-use App\Http\Controllers\Api\CartController;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
-use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductVariantController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\ReviewAdminController;
 use App\Http\Controllers\API\ReviewsController;
 use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -99,28 +96,19 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         
     }); 
 
-
-    Route::prefix('variants')->group(function() {
-        
+    Route::prefix('variants')->group(function() {        
         Route::get('/', [ProductVariantController::class, 'index']); // Lấy danh sách biến thể
         Route::post('/storeVariant', [ProductVariantController::class, 'storeVariant']); // Thêm biến thể
         Route::put('/updateVariant/{id}', [ProductVariantController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteVariant/{id}', [ProductVariantController::class, 'deleteVariant']);
         Route::get('/getDetailVariant/{id}', [ProductVariantController::class, 'getDetailVariant']);
-
-       
     });
+
     Route::prefix('reviews')->group(function() {
         Route::get('/', [ReviewAdminController::class, 'index']); // Lấy danh sách biến thể// Route::put('/updateVariant/{id}', [ReviewsController::class, 'updateVariant']); // cập nhập biến thể
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
-    
-    Route::resource('carts', CartController::class);
-    Route::put('/cart/update-cart', [CartController::class, 'updateCart']);
-    Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
-        Route::post('/store', [OrderController::class, 'store']);
-    });
+
     Route::prefix('roles')->group(function(){
         Route::get('/',[RoleController::class,'index']);
         Route::post('/storeRoles',[RoleController::class,'storeRoles']);
@@ -129,22 +117,5 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::get('/getDetailRole/{id}',[RoleController::class,'getDetailRole']);    
     });
 
-    Route::prefix('AdminWishlists')->group(function(){
-        Route::get('/',[WishlistController::class,'index']);
-        Route::post('/storeWishlists',[WishlistController::class,'storeWishlists']);
-        Route::delete('/deleteWishlists/{product_id}',[WishlistController::class,'deleteWishlists']);     
-       
-    });
 });
-Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');
 
-Route::prefix('wishlists')->group(function(){
-    // Lấy danh sách sản phẩm trong wishlist của người dùng
-    Route::get('/', [WishlistController::class, 'index'])->middleware('auth:sanctum');
-
-    // Thêm sản phẩm vào wishlist
-    Route::post('/storeWishlists', [WishlistController::class, 'storeWishlists'])->middleware('auth:sanctum');
-
-    // Xóa sản phẩm khỏi wishlist
-    Route::delete('/deleteWishlists/{product_id}', [WishlistController::class, 'deleteWishlists'])->middleware('auth:sanctum');
-});
