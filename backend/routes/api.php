@@ -133,6 +133,4 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
 Route::resource('carts', CartController::class)->middleware('auth:sanctum');
 Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
 
-Route::resource('carts', CartController::class)->middleware('auth:sanctum');
-Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
 
