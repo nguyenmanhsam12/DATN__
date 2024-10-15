@@ -13,6 +13,9 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    /* Allow JS imports */
+    "allowJs": true,
+    "esModuleInterop": true, // Support ES6 module syntax in JS
 
     /* Linting */
     "strict": true,
@@ -20,5 +23,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src/**/*", "src/custom.d.ts"],
+  "exclude": ["node_modules"]
 }

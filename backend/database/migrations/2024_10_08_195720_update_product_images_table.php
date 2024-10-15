@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->dropColumn('product_id'); // Xóa cột
             }
             // Thêm cột product_variant_id và thiết lập khóa ngoại
-            // $table->foreignId('product_variant_id')->constrained('product_variants')->onDelete('cascade');
+            $table->foreignId('product_variant_id')->constrained('product_variants')->onDelete('cascade');
         });
     }
 
