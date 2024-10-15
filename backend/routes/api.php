@@ -41,7 +41,13 @@ Route::get('/detailReview/{id}', [ReviewsController::class, 'getDetail'])->middl
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
+Route::prefix('Wishlist')->group(function () {
+    Route::get('/', [WishlistsController::class, 'index'])->middleware('auth:sanctum');
+    Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists'])->middleware('auth:sanctum');
+    Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists'])->middleware('auth:sanctum');
+});
+
+Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function(){
 
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index']);
@@ -108,16 +114,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
 
-    
-   
-    Route::prefix('roles')->group(function(){
-        Route::get('/',[RoleController::class,'index']);
-        Route::post('/storeRoles',[RoleController::class,'storeRoles']);
-        Route::put('/updateRoles/{id}',[RoleController::class,'updateRoles']);
-        Route::delete('/deleteRole/{id}',[RoleController::class,'deleteRole']);     
-        Route::get('/getDetailRole/{id}',[RoleController::class,'getDetailRole']);    
-
-
     Route::prefix('roles')->group(function () {
         Route::get('/', [RoleController::class, 'index']);
         Route::post('/storeRoles', [RoleController::class, 'storeRoles']);
@@ -131,24 +127,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
         Route::get('/', [WishlistsController::class, 'index']);
         Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists']);
         Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists']);
-        });
+    });
 });
 
 
-
-    Route::resource('carts', CartController::class)->middleware('auth:sanctum');
-    Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
-    Route::prefix('orders')->group(function () {
-    Route::get('/', [OrderController::class, 'index'])->name('orders.index')->middleware('auth:sanctum');
-    Route::post('/store', [OrderController::class, 'store'])->middleware('auth:sanctum');
-});
-
-
-
-
-Route::prefix('Wishlist')->group(function () {
-Route::get('/', [WishlistsController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists'])->middleware('auth:sanctum');
-Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists'])->middleware('auth:sanctum');
-});
+ 
 
