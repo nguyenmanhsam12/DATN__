@@ -114,12 +114,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
         Route::delete('/deleteReview/{id}', [ReviewsController::class, 'deleteReview']);
     });
     
-    Route::resource('carts', CartController::class);
-    Route::put('/cart/update-cart', [CartController::class, 'updateCart']);
-    Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
-        Route::post('/store', [OrderController::class, 'store']);
-    });
+   
     Route::prefix('roles')->group(function(){
         Route::get('/',[RoleController::class,'index']);
         Route::post('/storeRoles',[RoleController::class,'storeRoles']);
@@ -130,4 +125,14 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function() 
 
 });
 Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');
+
+
+    Route::resource('carts', CartController::class)->middleware('auth:sanctum');
+    Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
+    Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index')->middleware('auth:sanctum');
+    Route::post('/store', [OrderController::class, 'store'])->middleware('auth:sanctum');
+});
+
+
 
