@@ -59,7 +59,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
         Route::put('/update/{id}', [CategoryController::class, 'update']);
         Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
         Route::get('/detail/{id}', [CategoryController::class, 'getDetailCategory']);
-    });
+    }); 
 
     Route::prefix('brands')->group(function () {
         Route::get('/', [BrandController::class, 'index']);
