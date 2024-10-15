@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Api\CartController;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BrandController;
@@ -129,6 +130,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function(){
         Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists']);
     });
 });
+
+Route::resource('carts', CartController::class)->middleware('auth:sanctum');
+Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
 
 
  
