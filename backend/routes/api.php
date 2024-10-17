@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductVariantController;
 use App\Http\Controllers\API\ReviewAdminController;
 use App\Http\Controllers\API\ReviewsController;
@@ -131,9 +132,15 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function(){
     });
 });
 
-Route::resource('carts', CartController::class)->middleware('auth:sanctum');
-Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
+Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');
 
+
+    Route::resource('carts', CartController::class)->middleware('auth:sanctum');
+    Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
+    Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index')->middleware('auth:sanctum');
+    Route::post('/store', [OrderController::class, 'store'])->middleware('auth:sanctum');
+});
 
  
 
