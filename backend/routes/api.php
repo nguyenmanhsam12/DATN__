@@ -136,7 +136,7 @@ Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment']
 
     Route::resource('carts', CartController::class)->middleware('auth:sanctum');
     Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
-    Route::prefix('orders')->group(function () {
+Route::prefix('orders')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('orders.index')->middleware('auth:sanctum');
     Route::post('/store', [OrderController::class, 'store'])->middleware('auth:sanctum');
 });

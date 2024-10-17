@@ -46,7 +46,7 @@ class Cart extends Model
                 'cart_id' => $cart->id,
                 'product_variant_id' => $productVariantId->id,
                 'quantity' => $quantity,
-                'price' => $productVariantId->product->price,
+                'price' => $productVariantId->price,
                 
             ]);
             
