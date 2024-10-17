@@ -49,7 +49,7 @@ Route::prefix('Wishlist')->group(function () {
     Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists'])->middleware('auth:sanctum');
 });
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function(){
+Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index']);
@@ -122,14 +122,13 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function(){
         Route::put('/updateRoles/{id}', [RoleController::class, 'updateRoles']);
         Route::delete('/deleteRole/{id}', [RoleController::class, 'deleteRole']);
         Route::get('/getDetailRole/{id}', [RoleController::class, 'getDetailRole']);
-
     });
 
     Route::prefix('AdminWishlist')->group(function () {
         Route::get('/', [WishlistsController::class, 'index']);
         Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists']);
         Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists']);
-    });
+        });
 });
 
 Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');

@@ -38,7 +38,6 @@ class Cart extends Model
             ->first();
 
 
-    
         if ($cartItem) {
             $cartItem->quantity += $quantity;
             $cartItem->save();
