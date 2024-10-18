@@ -11,38 +11,68 @@ const Login = () => {
 
   const { mutate } = useMutation({
     mutationFn: async (values: { username: string; password: string }) => {
-      const response = await axios.post("/login", {
+      console.log("Submitting values:", {
         email: values.username,
         password: values.password,
       });
+
+      const response = await axios.post("/login", {
+        email: values.username,
+        password: values.password,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
       return response.data; 
     },
     
-    onSuccess: (data) => { 
-      console.log(data); 
+    onSuccess: async (data) => { 
       const { token, roles, username } = data;  
-      console.log('Username:', username);  
       message.success("Đăng nhập thành công!");
-      localStorage.setItem("roles", roles);
+
+      // Lưu thông tin vào localStorage
+      localStorage.setItem("roles", JSON.stringify(roles)); 
       localStorage.setItem("token", token);
-      localStorage.setItem("username", username); // Lưu username vào localStorage
-  
-      navigate("/"); 
+      localStorage.setItem("username", username);
+
+      // Lấy thông tin người dùng
+      try {
+        const userResponse = await axios.get("/user", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Gửi token để xác thực user
+          }
+        });
+
+        const userInfo = userResponse.data;
+        localStorage.setItem("email", userInfo.email); 
+
+        if (roles.includes("admin")) {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        message.error("Có lỗi xảy ra khi lấy thông tin người dùng!");
+      }
     },
+    
     onError: (error: any) => {
       console.error("Login error:", error); 
       const errorMessage =
           error.response?.data?.errors?.email || "Đăng nhập thất bại!"; 
       message.error(errorMessage);
     },
+    
     onSettled: () => {
       setLoading(false); 
     },
   });
   
-  
   const onFinish = (values: { username: string; password: string }) => {
-    setLoading(true); // Set loading state
+    setLoading(true);
     mutate(values); 
   };
 

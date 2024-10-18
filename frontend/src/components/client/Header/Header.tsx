@@ -1,10 +1,7 @@
 import React from "react";
-// import "../../assets/index.js";
 import "../../../assets/main.css";
-
 import { Link } from "react-router-dom";
-import UserInfo from "../user/userInfo";
-import Logout from "../Logout/Logout";
+import UserInfo from "../checkuser/userInfo";
 type Props = {};
 
 const Header = (props: Props) => {
@@ -41,20 +38,17 @@ const Header = (props: Props) => {
               </div>
             </div>
             <ul className="header-user-links flex items-center">
-          {token ? (
-            <li className="flex items-center">
-            <UserInfo >
-            <Logout />
-            </UserInfo>
-          </li>
-          
-          ) : (
-            <li>
-              <Link to="/register" className="mr-2">Đăng ký |</Link>
-              <Link to="/login" className="mr-2">Đăng nhập</Link>
-            </li>
-          )}
-        </ul>
+    {token ? (
+      <li className="flex items-center">
+        <UserInfo />
+      </li>
+    ) : (
+      <li>
+        <Link to="/register" className="mr-2">Đăng ký |</Link>
+        <Link to="/login" className="mr-2">Đăng nhập</Link>
+      </li>
+    )}
+  </ul>
           </div>
         </div>
       </div>
