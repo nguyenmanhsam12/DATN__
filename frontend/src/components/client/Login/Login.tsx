@@ -1,58 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
+import { Form, Input, Button, Checkbox, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from '@tanstack/react-query'; 
+import axios from "../../../configs/axios"; 
 
-type Props = {};
+const Login = () => {
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-const Login = (props: Props) => {
+  const { mutate } = useMutation({
+    mutationFn: async (values: { username: string; password: string }) => {
+      const response = await axios.post("/login", {
+        email: values.username,
+        password: values.password,
+      });
+      return response.data; 
+    },
+    
+    onSuccess: (data) => { 
+      console.log(data); 
+      const { token, roles, username } = data;  
+      console.log('Username:', username);  
+      message.success("Đăng nhập thành công!");
+      localStorage.setItem("roles", roles);
+      localStorage.setItem("token", token);
+      localStorage.setItem("username", username); // Lưu username vào localStorage
+  
+      navigate("/"); 
+    },
+    onError: (error: any) => {
+      console.error("Login error:", error); 
+      const errorMessage =
+          error.response?.data?.errors?.email || "Đăng nhập thất bại!"; 
+      message.error(errorMessage);
+    },
+    onSettled: () => {
+      setLoading(false); 
+    },
+  });
+  
+  
+  const onFinish = (values: { username: string; password: string }) => {
+    setLoading(true); // Set loading state
+    mutate(values); 
+  };
+
   return (
-    <div className="customer_login">
-      <div className="row">
-        <div className="col-lg-6 col-md-6 col-sm-12">
-          <div className="login-item">
-            <h5 className="title-login">Login your Account</h5>
-            <form className="login">
-              <div className="social-account">
-                <h6 className="title-social">Login with social account</h6>
-                <a href="#" className="mxh-item facebook">
-                  <i
-                    className="icon fa fa-facebook-square"
-                    aria-hidden="true"
-                  ></i>
-                  <span className="text">FACEBOOK</span>
-                </a>
-                <a href="#" className="mxh-item twitter">
-                  <i className="icon fa fa-twitter" aria-hidden="true"></i>
-                  <span className="text">TWITTER</span>
-                </a>
-              </div>
-              <p className="form-row form-row-wide">
-                <label className="text">Username</label>
-                <input title="username" type="text" className="input-text" />
-              </p>
-              <p className="form-row form-row-wide">
-                <label className="text">Password</label>
-                <input
-                  title="password"
-                  type="password"
-                  className="input-text"
-                />
-              </p>
-              <p className="lost_password">
-                <span className="inline">
-                  <input type="checkbox" id="cb1" />
-                  <label htmlFor="cb1" className="label-text">
-                    Remember me
-                  </label>
-                </span>
-                <a href="#" className="forgot-pw">
-                  Forgot password?
-                </a>
-              </p>
-              <p className="form-row">
-                <input type="submit" className="button-submit" value="login" />
-              </p>
-            </form>
-          </div>
-        </div>
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="w-full max-w-2xl p-8 bg-white rounded shadow-lg">
+        <h2 className="text-center text-2xl font-bold mb-6">
+          Đăng nhập vào tài khoản của bạn
+        </h2>
+
+        <Form
+          form={form}
+          name="login"
+          layout="vertical"
+          autoComplete="off"
+          onFinish={onFinish}
+        >
+          <Form.Item
+            label="Tên đăng nhập"
+            name="username"
+            rules={[{ required: true, message: "Vui lòng nhập tên đăng nhập của bạn!" }]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
+
+          <Form.Item
+            label="Mật khẩu"
+            name="password"
+            rules={[{ required: true, message: "Vui lòng nhập mật khẩu của bạn!" }]}
+          >
+            <Input.Password className="w-full" />
+          </Form.Item>
+
+          <Form.Item>
+            <div className="flex justify-between items-center">
+              <Checkbox>Nhớ tài khoản</Checkbox>
+              <a href="#" className="text-blue-600 hover:underline">
+                Quên mật khẩu?
+              </a>
+            </div>
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block loading={loading}>
+              Đăng nhập
+            </Button>
+          </Form.Item>
+
+          <Form.Item>
+            <p className="text-center">
+              Bạn chưa có tài khoản?{" "}
+              <Link to="/register" className="text-blue-600 hover:underline">
+                Đăng ký ngay
+              </Link>
+            </p>
+          </Form.Item>
+        </Form>
       </div>
     </div>
   );

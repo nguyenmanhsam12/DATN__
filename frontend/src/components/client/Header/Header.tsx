@@ -3,9 +3,12 @@ import React from "react";
 import "../../../assets/main.css";
 
 import { Link } from "react-router-dom";
+import UserInfo from "../user/userInfo";
+import Logout from "../Logout/Logout";
 type Props = {};
 
 const Header = (props: Props) => {
+  const token = localStorage.getItem("token");
   return (
     <header className="header style7">
       <div className="top-bar">
@@ -37,12 +40,21 @@ const Header = (props: Props) => {
                 </ul>
               </div>
             </div>
-            <ul className="header-user-links">
-              <li>
-                <Link to="/register">Register or </Link>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
+            <ul className="header-user-links flex items-center">
+          {token ? (
+            <li className="flex items-center">
+            <UserInfo >
+            <Logout />
+            </UserInfo>
+          </li>
+          
+          ) : (
+            <li>
+              <Link to="/register" className="mr-2">Đăng ký |</Link>
+              <Link to="/login" className="mr-2">Đăng nhập</Link>
+            </li>
+          )}
+        </ul>
           </div>
         </div>
       </div>
