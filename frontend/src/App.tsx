@@ -1,20 +1,21 @@
-import { useState } from "react";
-import "./App.css";
 import { useRoutes } from "react-router-dom";
-import Admin from "./pages/Admin";
-import ListProduct from "./components/Admin/products/product-list";
-import UserList from "./components/Admin/user/user-list";
-import EditUser from "./components/Admin/user/edit-user";
-import CouponList from "./components/Admin/coupons/list-coupon";
+import "./App.css";
 import AddCoupon from "./components/Admin/coupons/add-coupon";
-import UsageReport from "./components/Admin/coupons/usageReport";
 import EditCoupon from "./components/Admin/coupons/edit-coupon";
+import CouponList from "./components/Admin/coupons/list-coupon";
 import Statistics from "./components/Admin/coupons/statistic";
+import UsageReport from "./components/Admin/coupons/usageReport";
 import AddProduct from "./components/Admin/products/product-add";
-import Client from "./pages/Client";
+import ListProduct from "./components/Admin/products/product-list";
+import EditUser from "./components/Admin/user/edit-user";
+import UserList from "./components/Admin/user/user-list";
+import Login from "./components/client/Login/Login";
 import Main from "./components/client/Main/Main";
 import Register from "./components/client/Register/Register";
-import Login from "./components/client/Login/Login";
+import Admin from "./pages/Admin";
+import Client from "./pages/Client";
+import Products from "./components/client/products/Products";
+import ProductDetails from "./components/client/products/ProductDetails";
 
 function App() {
   const router = useRoutes([
@@ -25,6 +26,8 @@ function App() {
         { path: "", element: <Main /> },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login /> },
+        { path: "/products", element: <Products /> },
+        { path: "/products/details", element: <ProductDetails /> },
       ],
     },
     {
