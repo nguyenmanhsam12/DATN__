@@ -9,7 +9,18 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { Dropdown, Menu } from "antd";
 type Props = {};
+const menu = (
+  <Menu>
+    <Menu.Item key="1">
+      <a href="/register">Đăng ký</a>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a href="/login">Đăng nhập</a>
+    </Menu.Item>
+  </Menu>
+);
 
 const Header = (props: Props) => {
   return (
@@ -65,9 +76,8 @@ const Header = (props: Props) => {
             <div className="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
               <div className="logo">
                 <Link to="/">
-                  <img src="/src/assets/images/logo.png" alt="img"/>
+                  <img src="/src/assets/images/logo.png" alt="img" />
                 </Link>
-                
               </div>
             </div>
             <div className="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
@@ -93,7 +103,7 @@ const Header = (props: Props) => {
             <div className="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
               <div className="header-control">
                 <div className="block-account block-header nozari-dropdown">
-                  <a>
+                  <a href="/cart">
                     <ShoppingOutlined />
                   </a>
                   <div className="shopcart-description nozari-submenu">
@@ -233,9 +243,17 @@ const Header = (props: Props) => {
                   </div>
                 </div>
                 <div className="block-account block-header nozari-dropdown">
-                  <a>
-                    <UserOutlined />
-                  </a>
+                  <div className="block-account block-header nozari-dropdown">
+                    <Dropdown
+                      overlay={menu}
+                      trigger={["hover"]}
+                      placement="bottomCenter"
+                    >
+                      <a>
+                        <UserOutlined />
+                      </a>
+                    </Dropdown>
+                  </div>
                   <div className="header-account nozari-submenu">
                     <div className="header-user-form-tabs">
                       <ul className="tab-link">
@@ -398,39 +416,19 @@ const Header = (props: Props) => {
                     <span className="toggle-submenu"></span>
                     <div className="submenu mega-menu menu-page">
                       <div className="row">
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        >
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
                           <div className="nozari-custommenu default">
-                            <h2 className="widgettitle">Shop Pages</h2>
+                            <h2 className="widgettitle">Pages</h2>
                             <ul className="menu">
                               <li className="menu-item">
-                                <a href="shoppingcart.html">Shopping Cart</a>
+                                <a href="/cart">Cart</a>
                               </li>
                               <li className="menu-item">
-                                <a href="checkout.html">Checkout</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="contact.html">Contact us</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="404page.html">404</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="login.html">Login/Register</a>
+                                <a href="/cart/checkout">Checkout</a>
                               </li>
                             </ul>
                           </div>
                         </div>
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        ></div>
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        ></div>
                       </div>
                     </div>
                   </li>

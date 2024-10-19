@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
@@ -162,9 +163,9 @@ const ProductDetails = (props: Props) => {
                       </a>
                       <input
                         type="text"
-                        data-step={1}
-                        data-min={0}
-                        defaultValue={0}
+                        data-step={10}
+                        data-min={1}
+                        defaultValue={1}
                         title="Qty"
                         className="input-qty qty"
                         size={4}
@@ -174,9 +175,11 @@ const ProductDetails = (props: Props) => {
                       </a>
                     </div>
                   </div>
+                  <Link to="/cart">
                   <button className="single_add_to_cart_button button">
                     Add to cart
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>
