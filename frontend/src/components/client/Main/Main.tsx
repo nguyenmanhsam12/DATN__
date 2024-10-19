@@ -190,7 +190,7 @@ const Main = (props: Props) => {
                   </div>
                   <div className="product-thumb">
                     <div className="thumb-inner">
-                      <Link to="/products/detailsy">
+                      <Link to="/products/details">
                         <img src="/src/assets/img/product13.png" alt="img" />
                       </Link>
                     </div>
