@@ -15,6 +15,8 @@ import Client from "./pages/Client";
 import Main from "./components/client/Main/Main";
 import Register from "./components/client/Register/Register";
 import Login from "./components/client/Login/Login";
+import Products from "./components/client/products/Products";
+import ProductDetails from "./components/client/products/ProductsDetails";
 
 function App() {
   const router = useRoutes([
@@ -25,6 +27,8 @@ function App() {
         { path: "", element: <Main /> },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login /> },
+        { path: "/products", element: <Products /> },
+        { path: "/products/details", element: <ProductDetails /> },
       ],
     },
     {
