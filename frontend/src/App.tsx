@@ -28,10 +28,7 @@ function App() {
         { path: "", element: <Main /> },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login /> },
-        { path: "/products", element: <Products /> },
-        { path: "/products/details", element: <ProductDetails /> },
-        { path: "/cart/checkout", element: <Checkout /> },
-        { path: "/cart", element: <Cart /> },
+
 
       ],
     },
