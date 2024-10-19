@@ -2,10 +2,7 @@ import {
   CarOutlined,
   CustomerServiceOutlined,
   DollarOutlined,
-  InstagramOutlined,
-  RollbackOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
+  InstagramOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 

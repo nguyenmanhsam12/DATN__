@@ -16,8 +16,8 @@ import Admin from "./pages/Admin";
 import Client from "./pages/Client";
 import Products from "./components/client/products/Products";
 import ProductDetails from "./components/client/products/ProductDetails";
-import CheckOut from "./components/client/cart/checkout";
 import Cart from "./components/client/cart/Cart";
+import Checkout from "./components/client/cart/CheckOut";
 
 function App() {
   const router = useRoutes([
@@ -30,7 +30,7 @@ function App() {
         { path: "/login", element: <Login /> },
         { path: "/products", element: <Products /> },
         { path: "/products/details", element: <ProductDetails /> },
-        { path: "/cart/checkout", element: <CheckOut /> },
+        { path: "/cart/checkout", element: <Checkout /> },
         { path: "/cart", element: <Cart /> },
 
       ],

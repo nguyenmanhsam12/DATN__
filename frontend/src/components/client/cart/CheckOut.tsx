@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const CheckOut = (props: Props) => {
+const Checkout = (props: Props) => {
   return (
     <div>
       <div className="main-content main-content-checkout">
@@ -221,4 +221,4 @@ const CheckOut = (props: Props) => {
   );
 };
 
-export default CheckOut;
+export default Checkout;
