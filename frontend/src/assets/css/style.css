@@ -4213,6 +4213,13 @@ ul.list-products {
   font-family: "Flaticon";
   font-weight: normal;
 }
+.product-item .search-btn {
+  font-size: 18px !important;
+  position: relative;
+}
+.product-item .search-btn::before {
+  content: none !important;
+}
 .product-item.style-list .button.quick-wiew-button:hover,
 .product-item.style2 .button.quick-wiew-button:hover,
 .product-item.style-3 .button.quick-wiew-button:hover {
@@ -4289,8 +4296,8 @@ ul.list-products {
 }
 .product-item .thumb-group .quick-wiew-button::before {
   font-size: 18px;
-  content: "\f12d";
-  font-family: "Flaticon";
+  content: "\f08a";
+  font-family: "FontAwesome";
   font-weight: normal;
 }
 .product-item .thumb-group .loop-form-add-to-cart {

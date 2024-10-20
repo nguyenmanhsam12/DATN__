@@ -1,8 +1,28 @@
 import React from "react";
 import "../../../assets/main.css";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+import {
+  SearchOutlined,
+  ShoppingCartOutlined,
+  ShoppingOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Dropdown, Menu } from "antd";
+=======
 import UserInfo from "../checkuser/userInfo";
+>>>>>>> fc0f8717f30b3779a299eb81700d008fb309c7ac
 type Props = {};
+const menu = (
+  <Menu>
+    <Menu.Item key="1">
+      <a href="/register">Đăng ký</a>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a href="/login">Đăng nhập</a>
+    </Menu.Item>
+  </Menu>
+);
 
 const Header = (props: Props) => {
   const token = localStorage.getItem("token");
@@ -64,9 +84,9 @@ const Header = (props: Props) => {
           <div className="row">
             <div className="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
               <div className="logo">
-                <a>
+                <Link to="/">
                   <img src="/src/assets/images/logo.png" alt="img" />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
@@ -83,7 +103,7 @@ const Header = (props: Props) => {
                       />
                     </div>
                     <button className="btn-search" type="submit">
-                      <span className="icon-search"></span>
+                      <SearchOutlined />
                     </button>
                   </div>
                 </form>
@@ -91,14 +111,9 @@ const Header = (props: Props) => {
             </div>
             <div className="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
               <div className="header-control">
-                <div className="block-minicart nozari-mini-cart block-header nozari-dropdown">
-                  <a
-                    href="javascript:void(0);"
-                    className="shopcart-icon"
-                    data-nozari="nozari-dropdown"
-                  >
-                    Cart
-                    <span className="count"> 0 </span>
+                <div className="block-account block-header nozari-dropdown">
+                  <a href="/cart">
+                    <ShoppingOutlined />
                   </a>
                   <div className="shopcart-description nozari-submenu">
                     <div className="content-wrap">
@@ -237,9 +252,17 @@ const Header = (props: Props) => {
                   </div>
                 </div>
                 <div className="block-account block-header nozari-dropdown">
-                  <a href="javascript:void(0);" data-nozari="nozari-dropdown">
-                    <span className="flaticon-user"></span>
-                  </a>
+                  <div className="block-account block-header nozari-dropdown">
+                    <Dropdown
+                      overlay={menu}
+                      trigger={["hover"]}
+                      placement="bottomCenter"
+                    >
+                      <a>
+                        <UserOutlined />
+                      </a>
+                    </Dropdown>
+                  </div>
                   <div className="header-account nozari-submenu">
                     <div className="header-user-form-tabs">
                       <ul className="tab-link">
@@ -359,10 +382,8 @@ const Header = (props: Props) => {
                   className="nozari-clone-mobile-menu nozari-nav main-menu"
                   id="menu-main-menu"
                 >
-                  <li className="menu-item menu-item-has-children">
-                    <a href="" className="nozari-menu-item-title" title="Home">
-                      Home
-                    </a>
+                  <li className=" ">
+                    <Link to="/">home</Link>
                   </li>
 
                   <li className="menu-item menu-item-has-children">
@@ -376,7 +397,7 @@ const Header = (props: Props) => {
                     <span className="toggle-submenu"></span>
                     <ul className="submenu">
                       <li className="menu-item">
-                        <a href="gridproducts.html">Grid Fullwidth</a>
+                        <Link to="/products">products</Link>
                       </li>
                       <li className="menu-item">
                         <a href="gridproducts_leftsidebar.html">
@@ -404,64 +425,19 @@ const Header = (props: Props) => {
                     <span className="toggle-submenu"></span>
                     <div className="submenu mega-menu menu-page">
                       <div className="row">
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        >
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
                           <div className="nozari-custommenu default">
-                            <h2 className="widgettitle">Shop Pages</h2>
+                            <h2 className="widgettitle">Pages</h2>
                             <ul className="menu">
                               <li className="menu-item">
-                                <a href="shoppingcart.html">Shopping Cart</a>
+                                <a href="/cart">Cart</a>
                               </li>
                               <li className="menu-item">
-                                <a href="checkout.html">Checkout</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="contact.html">Contact us</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="404page.html">404</a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="login.html">Login/Register</a>
+                                <a href="/cart/checkout">Checkout</a>
                               </li>
                             </ul>
                           </div>
                         </div>
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        >
-                          <div className="nozari-custommenu default">
-                            <h2 className="widgettitle">Product</h2>
-                            <ul className="menu">
-                              <li className="menu-item">
-                                <a href="productdetails-fullwidth.html">
-                                  Product Fullwidth
-                                </a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="productdetails-leftsidebar.html">
-                                  Product left sidebar
-                                </a>
-                              </li>
-                              <li className="menu-item">
-                                <a href="productdetails-rightsidebar.html">
-                                  Product right sidebar
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        ></div>
-                        <div
-                          className="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item"
-                          style={{ width: "50%" }}
-                        ></div>
                       </div>
                     </div>
                   </li>

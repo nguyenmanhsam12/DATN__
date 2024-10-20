@@ -14,6 +14,10 @@ import Main from "../components/client/Main/Main";
 import Register from "../components/client/auth/Register";
 import Login from "../components/client/auth/Login";
 import PrivateRoute from "./privateRouter";
+import Products from "../components/client/products/Products";
+import ProductDetails from "../components/client/products/ProductDetails";
+import Checkout from "../components/client/cart/CheckOut";
+import Cart from "../components/client/cart/Cart";
 
 const Router = () => {
   const routes = useRoutes([
@@ -24,6 +28,10 @@ const Router = () => {
         { path: "", element: <Main /> },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login /> },
+        { path: "/products", element: <Products /> },
+        { path: "/products/details", element: <ProductDetails /> },
+        { path: "/cart/checkout", element: <Checkout /> },
+        { path: "/cart", element: <Cart /> },
       ],
     },
     {

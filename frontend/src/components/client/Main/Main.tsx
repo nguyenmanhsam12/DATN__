@@ -1,4 +1,10 @@
-import React from "react";
+import {
+  CarOutlined,
+  CustomerServiceOutlined,
+  DollarOutlined,
+  InstagramOutlined
+} from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -117,7 +123,7 @@ const Main = (props: Props) => {
                 <div className="nozari-iconbox default">
                   <div className="iconbox-inner">
                     <div className="icon">
-                      <span className="flaticon-rocket-ship"></span>
+                      <CarOutlined />
                     </div>
                     <div className="content">
                       <h4 className="title">Free Delivery</h4>
@@ -130,7 +136,7 @@ const Main = (props: Props) => {
                 <div className="nozari-iconbox default">
                   <div className="iconbox-inner">
                     <div className="icon">
-                      <span className="flaticon-return"></span>
+                      <DollarOutlined />
                     </div>
                     <div className="content">
                       <h4 className="title">Money Guarantee</h4>
@@ -143,7 +149,7 @@ const Main = (props: Props) => {
                 <div className="nozari-iconbox default">
                   <div className="iconbox-inner">
                     <div className="icon">
-                      <span className="flaticon-padlock"></span>
+                      <CustomerServiceOutlined />
                     </div>
                     <div className="content">
                       <h4 className="title">Online Support 24/7</h4>
@@ -160,9 +166,12 @@ const Main = (props: Props) => {
             <h3 className="custommenu-title-blog">Deal of the day</h3>
             <div
               className="owl-products owl-slick equal-container nav-center"
-              style={{ display: "flex", gap: "60px", justifyContent: "center" }}
-              data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":true, "infinite":false, "speed":800, "rows":1}'
-              data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":4}},{"breakpoint":"1200","settings":{"slidesToShow":3}},{"breakpoint":"992","settings":{"slidesToShow":2}},{"breakpoint":"480","settings":{"slidesToShow":1}}]'
+              style={{
+                display: "flex",
+                gap: "60px",
+                justifyContent: "center",
+                height: "350px",
+              }}
             >
               <div
                 className="product-item style-5"
@@ -178,36 +187,9 @@ const Main = (props: Props) => {
                   </div>
                   <div className="product-thumb">
                     <div className="thumb-inner">
-                      <a href="#">
+                      <Link to="/products/details">
                         <img src="/src/assets/img/product13.png" alt="img" />
-                      </a>
-                      <div className="thumb-group">
-                        <div className="yith-wcwl-add-to-wishlist">
-                          <div className="yith-wcwl-add-button">
-                            <a href="#">Add to Wishlist</a>
-                          </div>
-                        </div>
-                        <a href="#" className="button quick-wiew-button">
-                          Quick View
-                        </a>
-                        <div className="loop-form-add-to-cart">
-                          <button className="single_add_to_cart_button button">
-                            Add to cart
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="product-count-down">
-                      <div
-                        className="nozari-countdown"
-                        data-y="2020"
-                        data-m="10"
-                        data-w="4"
-                        data-d="10"
-                        data-h="20"
-                        data-i="20"
-                        data-s="60"
-                      ></div>
+                      </Link>
                     </div>
                   </div>
                   <div className="product-info">
@@ -252,27 +234,7 @@ const Main = (props: Props) => {
                             <a href="#">Add to Wishlist</a>
                           </div>
                         </div>
-                        <a href="#" className="button quick-wiew-button">
-                          Quick View
-                        </a>
-                        <div className="loop-form-add-to-cart">
-                          <button className="single_add_to_cart_button button">
-                            Add to cart
-                          </button>
-                        </div>
                       </div>
-                    </div>
-                    <div className="product-count-down">
-                      <div
-                        className="nozari-countdown"
-                        data-y="2020"
-                        data-m="9"
-                        data-w="2"
-                        data-d="30"
-                        data-h="20"
-                        data-i="60"
-                        data-s="60"
-                      ></div>
                     </div>
                   </div>
                   <div className="product-info">
@@ -317,27 +279,7 @@ const Main = (props: Props) => {
                             <a href="#">Add to Wishlist</a>
                           </div>
                         </div>
-                        <a href="#" className="button quick-wiew-button">
-                          Quick View
-                        </a>
-                        <div className="loop-form-add-to-cart">
-                          <button className="single_add_to_cart_button button">
-                            Add to cart
-                          </button>
-                        </div>
                       </div>
-                    </div>
-                    <div className="product-count-down">
-                      <div
-                        className="nozari-countdown"
-                        data-y="2020"
-                        data-m="12"
-                        data-w="1"
-                        data-d="24"
-                        data-h="20"
-                        data-i="50"
-                        data-s="60"
-                      ></div>
                     </div>
                   </div>
                   <div className="product-info">
@@ -382,29 +324,10 @@ const Main = (props: Props) => {
                             <a href="#">Add to Wishlist</a>
                           </div>
                         </div>
-                        <a href="#" className="button quick-wiew-button">
-                          Quick View
-                        </a>
-                        <div className="loop-form-add-to-cart">
-                          <button className="single_add_to_cart_button button">
-                            Add to cart
-                          </button>
-                        </div>
                       </div>
                     </div>
-                    <div className="product-count-down">
-                      <div
-                        className="nozari-countdown"
-                        data-y="2020"
-                        data-m="9"
-                        data-w="2"
-                        data-d="30"
-                        data-h="20"
-                        data-i="60"
-                        data-s="60"
-                      ></div>
-                    </div>
                   </div>
+
                   <div className="product-info">
                     <h5 className="product-name product_title">
                       <a href="#">Long Sleeve Midi</a>
@@ -425,8 +348,28 @@ const Main = (props: Props) => {
                 </div>
               </div>
             </div>
+            <div className="pagination clearfix style2">
+              <div className="nav-link">
+                <a href="#" className="page-numbers ">
+                  <i className="icon fa fa-angle-left" aria-hidden="true" />
+                </a>
+                <a href="#" className="page-numbers current">
+                  1
+                </a>
+                <a href="#" className="page-numbers">
+                  2
+                </a>
+                <a href="#" className="page-numbers ">
+                  3
+                </a>
+                <a href="#" className="page-numbers">
+                  <i className="icon fa fa-angle-right" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+
         <div className="banner-wrapp">
           <div className="container">
             <div className="row">
@@ -556,14 +499,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -608,14 +543,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -662,14 +589,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -714,14 +633,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -768,14 +679,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -820,14 +723,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -874,14 +769,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -926,14 +813,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -986,14 +865,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1038,14 +909,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1092,14 +955,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1144,14 +999,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1198,14 +1045,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1250,14 +1089,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1304,14 +1135,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1356,14 +1179,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1416,14 +1231,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1469,14 +1276,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1521,14 +1320,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1575,14 +1366,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1627,14 +1410,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -1681,14 +1456,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1734,14 +1501,6 @@ const Main = (props: Props) => {
                                   <a href="#">Add to Wishlist</a>
                                 </div>
                               </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1786,14 +1545,6 @@ const Main = (props: Props) => {
                                 <div className="yith-wcwl-add-button">
                                   <a href="#">Add to Wishlist</a>
                                 </div>
-                              </div>
-                              <a href="#" className="button quick-wiew-button">
-                                Quick View
-                              </a>
-                              <div className="loop-form-add-to-cart">
-                                <button className="single_add_to_cart_button button">
-                                  Add to cart
-                                </button>
                               </div>
                             </div>
                           </div>
@@ -2061,89 +1812,89 @@ const Main = (props: Props) => {
             </div>
           </div>
         </div>
-      </div>
-      {/* instagram */}
-      <div className="instagram-wrapp">
-        <div>
-          <h3 className="custommenu-title-blog">
-            <i className="flaticon-instagram" aria-hidden="true" />
-            Instagram Feed
-          </h3>
-          <div className="nozari-instagram">
-            <div
-              className="instagram owl-slick equal-container"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                width: "100%",
-              }}
-              data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":false, "infinite":true, "speed":800, "rows":1}'
-              data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":5}},{"breakpoint":"1200","settings":{"slidesToShow":4}},{"breakpoint":"992","settings":{"slidesToShow":3}},{"breakpoint":"768","settings":{"slidesToShow":2}},{"breakpoint":"481","settings":{"slidesToShow":2}}]'
-            >
-              <div className="item-instagram">
-                <a href="#">
-                  <img
-                    src="src/assets/images/instagram/1.jpg"
-                    alt="img"
-                    style={{ width: "302px", height: "302px" }}
-                  />
-                </a>
-                <span className="text">
-                  <i className="icon flaticon-instagram" aria-hidden="true" />
-                </span>
-              </div>
-              <div className="item-instagram">
-                <a href="#">
-                  <img
-                    src="src/assets/images/instagram/2.jpg"
-                    alt="img"
-                    style={{ width: "302px", height: "302px" }}
-                  />
-                </a>
-                <span className="text">
-                  <i className="icon flaticon-instagram" aria-hidden="true" />
-                </span>
-              </div>
-              <div className="item-instagram">
-                <a href="#">
-                  <img
-                    src="src/assets/images/instagram/3.jpg"
-                    alt="img"
-                    style={{ width: "302px", height: "302px" }}
-                  />
-                </a>
-                <span className="text">
-                  <i className="icon flaticon-instagram" aria-hidden="true" />
-                </span>
-              </div>
-              <div className="item-instagram">
-                <a href="#">
-                  <img
-                    src="src/assets/images/instagram/4.jpg"
-                    alt="img"
-                    style={{ width: "302px", height: "302px" }}
-                  />
-                </a>
-                <span className="text">
-                  <i className="icon flaticon-instagram" aria-hidden="true" />
-                </span>
-              </div>
-              <div className="item-instagram">
-                <a href="#">
-                  <img
-                    src="src/assets/images/instagram/5.jpeg"
-                    alt="img"
-                    style={{ width: "302px", height: "302px" }}
-                  />
-                </a>
-                <span className="text">
-                  <i className="icon flaticon-instagram" aria-hidden="true" />
-                </span>
+        <div className="instagram-wrapp">
+          <div>
+            <h3 className="custommenu-title-blog">
+              <i className="flaticon-instagram" aria-hidden="true" />
+              Instagram Feed
+            </h3>
+            <div className="nozari-instagram">
+              <div
+                className="instagram owl-slick equal-container"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+                data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":false, "infinite":true, "speed":800, "rows":1}'
+                data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":5}},{"breakpoint":"1200","settings":{"slidesToShow":4}},{"breakpoint":"992","settings":{"slidesToShow":3}},{"breakpoint":"768","settings":{"slidesToShow":2}},{"breakpoint":"481","settings":{"slidesToShow":2}}]'
+              >
+                <div className="item-instagram">
+                  <a href="#">
+                    <img
+                      src="src/assets/images/instagram/1.jpg"
+                      alt="img"
+                      style={{ width: "302px", height: "302px" }}
+                    />
+                  </a>
+                  <span className="text">
+                    <InstagramOutlined />
+                  </span>
+                </div>
+                <div className="item-instagram">
+                  <a href="#">
+                    <img
+                      src="src/assets/images/instagram/2.jpg"
+                      alt="img"
+                      style={{ width: "302px", height: "302px" }}
+                    />
+                  </a>
+                  <span className="text">
+                    <InstagramOutlined />
+                  </span>
+                </div>
+                <div className="item-instagram">
+                  <a href="#">
+                    <img
+                      src="src/assets/images/instagram/3.jpg"
+                      alt="img"
+                      style={{ width: "302px", height: "302px" }}
+                    />
+                  </a>
+                  <span className="text">
+                    <InstagramOutlined />
+                  </span>
+                </div>
+                <div className="item-instagram">
+                  <a href="#">
+                    <img
+                      src="src/assets/images/instagram/4.jpg"
+                      alt="img"
+                      style={{ width: "302px", height: "302px" }}
+                    />
+                  </a>
+                  <span className="text">
+                    <InstagramOutlined />
+                  </span>
+                </div>
+                <div className="item-instagram">
+                  <a href="#">
+                    <img
+                      src="src/assets/images/instagram/5.jpeg"
+                      alt="img"
+                      style={{ width: "302px", height: "302px" }}
+                    />
+                  </a>
+                  <span className="text">
+                    <InstagramOutlined />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* instagram */}
     </div>
   );
 };
