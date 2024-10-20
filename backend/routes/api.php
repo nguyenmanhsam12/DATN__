@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
+use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductVariantController;
@@ -42,6 +43,27 @@ Route::get('/detailReview/{id}', [ReviewsController::class, 'getDetail'])->middl
 
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+
+// tất cả sp
+Route::get('/getAllProduct', [HomeController::class, 'getAllProduct']);
+
+// lấy tất cả danh mục
+Route::get('/AllCategory', [HomeController::class, 'AllCategory']);
+
+// lấy sp dựa theo slug danh mục
+Route::get('/getAllProCate/{categorySlug}', [HomeController::class, 'getAllProCate']);
+
+// lấy sp theo thương hiệu
+Route::get('/getAllProBrand/{brandSlug}', [HomeController::class, 'getAllProBrand']);
+
+// chi tiết sản phẩm
+Route::get('/getProductBySlug/{slug}', [HomeController::class, 'getProductBySlug']);
+
+
+
+
+
+
 
 Route::prefix('Wishlist')->group(function () {
     Route::get('/', [WishlistsController::class, 'index'])->middleware('auth:sanctum');

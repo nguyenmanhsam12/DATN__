@@ -21,4 +21,9 @@ class Brand extends Model
             ->generateSlugsFrom('name') // Tạo slug từ trường 'name'
             ->saveSlugsTo('slug'); // Lưu vào trường 'slug'
     }
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
