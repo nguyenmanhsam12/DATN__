@@ -22,6 +22,11 @@ class Product extends Model
             ->saveSlugsTo('slug'); // Lưu vào trường 'slug'
     }
 
+    // lấy ra 1 sản phẩm chính của biến thể
+    public function mainVariant(){
+        return $this->hasOne(ProductVariant::class)->orderBy('price','asc');
+    }
+
     public function variants()
     {
         return $this->hasMany(ProductVariant::class);

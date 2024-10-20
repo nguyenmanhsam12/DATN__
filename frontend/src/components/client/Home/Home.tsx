@@ -1,9 +1,9 @@
 import React from "react";
 import Main from "../Main/Main";
 
-type Props = {};
 
-const Home = (props: Props) => {
+
+const Home = () => {
   return (
     <div>
       <Main></Main>

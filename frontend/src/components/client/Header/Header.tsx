@@ -1,8 +1,7 @@
 import React from "react";
-// import "../../assets/index.js";
 import "../../../assets/main.css";
-
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import {
   SearchOutlined,
   ShoppingCartOutlined,
@@ -10,6 +9,9 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
+=======
+import UserInfo from "../checkuser/userInfo";
+>>>>>>> fc0f8717f30b3779a299eb81700d008fb309c7ac
 type Props = {};
 const menu = (
   <Menu>
@@ -23,6 +25,7 @@ const menu = (
 );
 
 const Header = (props: Props) => {
+  const token = localStorage.getItem("token");
   return (
     <header className="header style7">
       <div className="top-bar">
@@ -54,12 +57,18 @@ const Header = (props: Props) => {
                 </ul>
               </div>
             </div>
-            <ul className="header-user-links">
-              <li>
-                <Link to="/register">Register or </Link>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
+            <ul className="header-user-links flex items-center">
+    {token ? (
+      <li className="flex items-center">
+        <UserInfo />
+      </li>
+    ) : (
+      <li>
+        <Link to="/register" className="mr-2">Đăng ký |</Link>
+        <Link to="/login" className="mr-2">Đăng nhập</Link>
+      </li>
+    )}
+  </ul>
           </div>
         </div>
       </div>

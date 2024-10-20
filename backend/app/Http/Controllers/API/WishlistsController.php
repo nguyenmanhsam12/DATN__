@@ -39,7 +39,7 @@ class WishlistsController extends Controller
 
     // Thêm một sản phẩm vào wishlist
     public function storeWishlists(Request $request)
-{
+    {
     try {
         // Xác thực dữ liệu đầu vào
         $request->validate([
@@ -84,7 +84,7 @@ class WishlistsController extends Controller
         if ($th instanceof ModelNotFoundException) {
             return response()->json([
                 'message' => 'Thêm mới không thành công'
-            ], Response::HTTP_NOT_FOUND);
+            ], Response::HTTP_NOT_FOUND);   
         }
 
         return response()->json([

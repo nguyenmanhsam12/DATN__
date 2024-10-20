@@ -1,10 +1,13 @@
 <?php
+use App\Http\Controllers\Api\CartController;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ColorController;
+use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductVariantController;
 use App\Http\Controllers\API\ReviewAdminController;
 use App\Http\Controllers\API\ReviewsController;
@@ -41,6 +44,33 @@ Route::get('/detailReview/{id}', [ReviewsController::class, 'getDetail'])->middl
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
+// tất cả sp
+Route::get('/getAllProduct', [HomeController::class, 'getAllProduct']);
+
+// lấy tất cả danh mục
+Route::get('/AllCategory', [HomeController::class, 'AllCategory']);
+
+// lấy sp dựa theo slug danh mục
+Route::get('/getAllProCate/{categorySlug}', [HomeController::class, 'getAllProCate']);
+
+// lấy sp theo thương hiệu
+Route::get('/getAllProBrand/{brandSlug}', [HomeController::class, 'getAllProBrand']);
+
+// chi tiết sản phẩm
+Route::get('/getProductBySlug/{slug}', [HomeController::class, 'getProductBySlug']);
+
+
+
+
+
+
+
+Route::prefix('Wishlist')->group(function () {
+    Route::get('/', [WishlistsController::class, 'index'])->middleware('auth:sanctum');
+    Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists'])->middleware('auth:sanctum');
+    Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists'])->middleware('auth:sanctum');
+});
+
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('users')->group(function () {
@@ -59,7 +89,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
         Route::put('/update/{id}', [CategoryController::class, 'update']);
         Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
         Route::get('/detail/{id}', [CategoryController::class, 'getDetailCategory']);
-    });
+    }); 
 
     Route::prefix('brands')->group(function () {
         Route::get('/', [BrandController::class, 'index']);
@@ -123,8 +153,15 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
         });
 });
 
-Route::prefix('Wishlist')->group(function () {
-Route::get('/', [WishlistsController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/storeWishlist', [WishlistsController::class, 'storeWishlists'])->middleware('auth:sanctum');
-Route::delete('/deleteWishlist/{product_id}', [WishlistsController::class, 'deleteWishlists'])->middleware('auth:sanctum');
+Route::get('/check-payment/{order_id}', [OrderController::class, 'checkPayment'])->name('orders.check_payment');
+
+
+    Route::resource('carts', CartController::class)->middleware('auth:sanctum');
+    Route::put('/cart/update-cart', [CartController::class, 'updateCart'])->middleware('auth:sanctum');
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index')->middleware('auth:sanctum');
+    Route::post('/store', [OrderController::class, 'store'])->middleware('auth:sanctum');
 });
+
+ 
+
