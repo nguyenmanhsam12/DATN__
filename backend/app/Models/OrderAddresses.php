@@ -12,7 +12,6 @@ class OrderAddresses extends Model
     use HasFactory;
 
     protected $table = "order_addresses";
-    protected $fillable = ['order_id', 'address_order', 'city'];
+    protected $fillable = ['order_id', 'address_order', 'city', 'name', 'phone_number', 'email', 'note'];
 
 }
-

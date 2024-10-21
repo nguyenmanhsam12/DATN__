@@ -16,20 +16,24 @@ class Order extends Model
     const UNPAID = 2;
     const PENDING = 1;
 
-    public static function createOrder($user, $paymentMethod, $addressOrder, $city)
+    public static function createOrder($user, $request)
     {
         $order = self::create([
             'user_id' => $user->id,
             'status' => Order::PENDING,
             'payment_status' => Order::UNPAID,
             'total_amount' => 0,
-            'payment_method' => $paymentMethod,
+            'payment_method' => $request->payment_method,
         ]);
 
         OrderAddresses::create([
             'order_id' => $order->id,
-            'address_order' => $addressOrder,
-            'city' => $city,
+            'address_order' => $request->address_order,
+            'city' => $request->city,
+            'name' => $request->name ?? $user->name,
+            'phone_number' => $request->phone_number ?? $user->phone_number,
+            'email' => $request->email ?? $user->email,
+            'note' => $request->note ?? "",
         ]);
 
         return $order;
@@ -50,4 +54,3 @@ class Order extends Model
         $this->update(['total_amount' => $totalAmount]);
     }
 }
-
