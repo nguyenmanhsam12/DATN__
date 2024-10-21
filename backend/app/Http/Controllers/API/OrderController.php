@@ -52,7 +52,7 @@ class OrderController extends Controller
         if (empty($carts)) {
             return response()->json(['message' => 'Giỏ hàng trống!'], 400);
         }
-        $order = Order::createOrder($user, $request->payment_method, $request->address_order, $request->city);
+        $order = Order::createOrder($user, $request);
         $totalAmount = $this->processCartItems($carts, $order, $cartItemIds);
         $order->updateTotalAmount($totalAmount);
         if ($request->payment_method == "momo") {

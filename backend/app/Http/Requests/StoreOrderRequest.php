@@ -29,6 +29,9 @@ class StoreOrderRequest extends FormRequest
             'city' => 'required',
             'cart_item_ids' => 'required|array',
             'cart_item_ids.*' => 'exists:cart_items,id',
+            'name' => 'nullable|string|min:3', // Tên không bắt buộc, nhưng nếu có thì phải là chuỗi và ít nhất 3 ký tự
+            'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10', // Số điện thoại không bắt buộc, nhưng nếu có thì phải đúng định dạng và ít nhất 10 ký tự
+            'email' => 'nullable|email', // Email không bắt buộc, nhưng nếu có thì phải đúng định dạng email
         ];
     }
 
@@ -40,6 +43,10 @@ class StoreOrderRequest extends FormRequest
             'city.required' => 'Thành phố là bắt buộc.',
             'cart_item_ids.array' => 'Trường ID mặt hàng trong giỏ hàng phải là một mảng.',
             'cart_item_ids.*.exists' => 'Một hoặc nhiều sản phẩm trong giỏ hàng không tồn tại.',
+            'name.min' => 'Tên phải có ít nhất 3 ký tự.',
+            'phone.regex' => 'Số điện thoại không đúng định dạng.',
+            'phone.min' => 'Số điện thoại phải có ít nhất 10 ký tự.',
+            'email.email' => 'Email không đúng định dạng.',
         ];
     }
 
