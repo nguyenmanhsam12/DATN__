@@ -41,15 +41,25 @@ import RoleList from './components/Admin/roles/list-role'
 import RoleAdd from './components/Admin/roles/add-role'
 import RoleEdit from './components/Admin/roles/edit-role'
 import UserContext from './context/UserContext'
+import HomePage from './components/Client/Main/HomePage'
+import Products from './components/Client/products/Products'
+import ProductDetails from './components/Client/products/ProductDetails'
 
 
 function App() {
-  const router = useRoutes ([
+  const router = useRoutes([
     // Page
-    {path:'', element:<Client/>, children:[
-      {path:'/login',element:<Login/> },
-      {path:'/register',element:<Register/> },
-    ]},
+    {
+      path: "",
+      element: <Client />,
+      children: [
+        { path: "", element: <HomePage /> },
+        { path: "/login", element: <Login /> },
+        { path: "/register", element: <Register /> },
+        { path: "/products", element: <Products /> },
+        { path: "/products/details", element: <ProductDetails /> },
+      ],
+    },
     //Admin
     {path:'dashboard', element:
       <SizeContext>
@@ -75,27 +85,27 @@ function App() {
       {path:'add-user',element:<AddUser/>},
       {path:'edit-user/:id',element:<EditUser/>},
 
-      // coupons
-      {path:'coupon-list',element:<CouponList/>},
-      {path:'coupon-add',element:<AddCoupon/>},
-      {path:'coupon-edit',element:<EditCoupon/>},
-      {path:'coupon-usagereport',element:<UsageReport/>},
-      {path:'coupon-statistic',element:<Statistics/>},
+        // coupons
+        { path: "coupon-list", element: <CouponList /> },
+        { path: "coupon-add", element: <AddCoupon /> },
+        { path: "coupon-edit", element: <EditCoupon /> },
+        { path: "coupon-usagereport", element: <UsageReport /> },
+        { path: "coupon-statistic", element: <Statistics /> },
 
-      //Categories
-      {path:'list-categories',element:<ListCategories/>},
-      {path:'add-categories',element:<AddCategory/>},
-      {path:'edit-categories/:id',element:<EditCategory/>},
+        //Categories
+        { path: "list-categories", element: <ListCategories /> },
+        { path: "add-categories", element: <AddCategory /> },
+        { path: "edit-categories/:id", element: <EditCategory /> },
 
       //roles
       {path:'list-roles',element:<RoleList/>},
       {path:'add-roles',element:<RoleAdd/>},
       {path:'edit-roles/:id',element:<RoleEdit/>},
 
-      //sizes
-      {path:'list-sizes',element:<ListSize/>},
-      {path:'add-sizes',element:<AddSize/>},
-      {path:'edit-sizes/:id', element:<EditSize/>},
+        //sizes
+        { path: "list-sizes", element: <ListSize /> },
+        { path: "add-sizes", element: <AddSize /> },
+        { path: "edit-sizes/:id", element: <EditSize /> },
 
       //brands
       {path:'list-brands',element:<ListBrand/>},
@@ -123,4 +133,4 @@ function App() {
   return router
 }
 
-export default App
+export default App;

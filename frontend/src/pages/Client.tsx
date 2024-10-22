@@ -1,14 +1,18 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Client/Header/Header";
+import Footer from "../components/Client/Footer/Footer";
 
-type Props = {}
+type Props = {};
 
 const Client = (props: Props) => {
   return (
     <div>
-        <Outlet/>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Client
+export default Client;
