@@ -45,9 +45,9 @@ const BrandContext = ({children}: Props) => {
                 const brandata = await AddBrand(resdata);
                 if (brandata) {
                     alert('Brand added successfully.');
-                    setBrand([...brands, brandata]);
+                    setBrand([...brands, brandata.data]);
                     navigate('/dashboard/list-brands');
-                    window.location.reload();
+                    // window.location.reload();
                 }
             } catch (error) {
                 console.log("Error while adding brand:", error);
@@ -65,7 +65,7 @@ const BrandContext = ({children}: Props) => {
             const newbrand = brands.map(brand => (brand.id === id) ? resdata : brand);
             setBrand(newbrand);
             navigate('/dashboard/list-brands');
-            window.location.reload();
+            // window.location.reload();
         } catch (error) {
             console.log("Error while editing brand:", error);
         }

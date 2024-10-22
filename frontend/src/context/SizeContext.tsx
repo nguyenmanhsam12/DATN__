@@ -49,9 +49,9 @@ const SizeContext = ({children}: Props) => {
             const size = await AddSize(data);
             if (size) {
                 alert('Size added successfully.');
-                setSize([...sizes, size]);
+                setSize([...sizes, size.data]);
                 navigate('/dashboard/list-sizes');
-                window.location.reload();
+                // window.location.reload();
             }
         } catch (error) {
             console.log("Error while adding size:", error);
@@ -70,7 +70,7 @@ const onEdit = async (data: Formsize, id: number | string) => {
       const newSize = sizes.map(size => (size.id === id) ? resdata : size);
       setSize(newSize);
       navigate('/dashboard/list-sizes');
-      window.location.reload();
+      // window.location.reload();
   } catch (error) {
       console.log("Error while editing size:", error);
   }

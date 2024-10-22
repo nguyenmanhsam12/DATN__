@@ -35,10 +35,9 @@ const ListCategories = (props: Props) => {
                   <td className="py-2 px-4 border-b">{category.created_at ? String(category.created_at) : 'Không có'}</td>
                   <td className="py-2 px-4 border-b">{category.updated_at ? String(category.updated_at) : 'Không có'}</td>
                   <td className="py-2 px-4 border-b">
-                    <Link to={`/dashboard/edit-categories/${category.id}`} className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">Edit</Link>
-                    <button className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Copy</button>
-                    <button onClick={()=>onDelete(category.id)} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Delete</button>
-                  </td>
+                    <Link to={`/dashboard/edit-categories/${category.id}`} className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</Link>
+                    <button onClick={()=>onDelete(category.id)} className="ml-3 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
