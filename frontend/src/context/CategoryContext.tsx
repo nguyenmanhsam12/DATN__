@@ -46,9 +46,9 @@ const CategoryContext = ({children}: Props) => {
                 const catedata = await AddCategory(resdata);
                 if (catedata) {
                     alert('Size added successfully.');
-                    setCategory([...categories, catedata]);
+                    setCategory([...categories, catedata.data]);
                     navigate('/dashboard/list-categories');
-                    window.location.reload();
+                    // window.location.reload();
                 }
             } catch (error) {
                 console.log("Error while adding category:", error);
@@ -66,7 +66,7 @@ const CategoryContext = ({children}: Props) => {
             const newCategory = categories.map(category => (category.id === id) ? resdata : category);
             setCategory(newCategory);
             navigate('/dashboard/list-categories');
-            window.location.reload();
+            // window.location.reload();
         } catch (error) {
             console.log("Error while editing category:", error);
         }

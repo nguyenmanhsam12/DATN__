@@ -83,8 +83,6 @@ const UserList = () => {
             <th className="border border-gray-300 p-4 text-left">Số điện thoại</th>
             <th className="border border-gray-300 p-4 text-left">Địa chỉ</th>
             <th className="border border-gray-300 p-4 text-left">Thành phố</th>
-            <th className="border border-gray-300 p-4 text-left">Ngày tạo</th>
-            <th className="border border-gray-300 p-4 text-left">Ngày cập nhật</th>
             <th className="border border-gray-300 p-4 text-left">Hành động</th>
           </tr>
         </thead>
@@ -104,8 +102,6 @@ const UserList = () => {
                 <td className="border border-gray-300 p-4">{user.phone_number || 'Không có'}</td>
                 <td className="border border-gray-300 p-4">{user.address || 'Không có'}</td>
                 <td className="border border-gray-300 p-4">{user.city || 'Không có'}</td>
-                <td className="border border-gray-300 p-4">{user.created_at ? String(user.created_at) : 'Không có'}</td>
-                <td className="border border-gray-300 p-4">{user.updated_at ? String(user.updated_at) : 'Không có'}</td>
                 <td className="border border-gray-300 p-4">
                  <div className='flex gap-2'>
                  <Link to={`/dashboard/edit-user/${user.id}`} className="px-4 py-2 bg-yellow-500 text-white font-semibold rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition duration-200 ease-in-out" onClick={() => console.log(`Edit user ID: ${user.id}`)}>

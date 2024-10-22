@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $products = Product::with(['brand', 'category'])->get();
+            $products = Product::with(['brand', 'category', 'user'])->get();
             return response()->json([
                 'message' => 'Lấy dữ liệu thành công',
                 'data' => $products,
