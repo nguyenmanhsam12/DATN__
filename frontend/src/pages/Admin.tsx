@@ -24,8 +24,8 @@ const items2: MenuProps['items'] = [
     icon: <LaptopOutlined />,
     label: 'Products',
     children: [
-      { key: '2-1', label: <Link to='list-product'>List products</Link> },
-      { key: '2-2', label: <Link to='add-product'>Add products</Link> },
+      { key: '2-1', label: <Link to='list-products'>List products</Link> },
+      { key: '2-2', label: <Link to='add-products'>Add products</Link> },
     ],
   },
   // {
@@ -67,6 +67,7 @@ const items2: MenuProps['items'] = [
     label: 'Roles',
     children: [
       { key: '6-1', label: <Link to='list-roles'>List Roles</Link> },
+      { key: '6-2', label: <Link to='add-roles'>Add Roles</Link> },
       
     ],
   },
@@ -86,6 +87,24 @@ const items2: MenuProps['items'] = [
     children: [
       { key: '8-1', label: <Link to='list-brands'>List Brands</Link> },
       { key: '8-2', label: <Link to='add-brands'>Add Brand</Link> },
+    ],
+  },
+  {
+    key: '9',
+    icon: <AppstoreOutlined />,
+    label: 'Colors',
+    children: [
+      { key: '9-1', label: <Link to='list-colors'>List Colors</Link> },
+      { key: '9-2', label: <Link to='add-colors'>Add Color</Link> },
+    ],
+  },
+  {
+    key: '10',
+    icon: <AppstoreOutlined />,
+    label: 'Variants',
+    children: [
+      { key: '10-1', label: <Link to='list-variants'>List Variants</Link> },
+      { key: '10-2', label: <Link to='add-variants'>Add Variants</Link> },
     ],
   },
 ];
