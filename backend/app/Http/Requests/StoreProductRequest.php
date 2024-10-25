@@ -22,11 +22,17 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:products,name',
-            'description' => 'required|string|max:1000',
-            'brand_id' => 'required|exists:brands,id',
-            'category_id' => 'required|exists:categories,id',
-            
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string',
+            'brand_id' => 'required|integer|exists:brands,id',
+            'category_id' => 'required|integer|exists:categories,id',
+            'variants.*.size_id' => 'required|integer',
+            'variants.*.color_id' => 'required|integer',
+            'variants.*.sku' => 'required|string|max:255',
+            'variants.*.stock' => 'required|integer',
+            'variants.*.price' => 'required|numeric',
+            'variants.*.image' => 'required|image|max:2048', // Bắt buộc hình ảnh chính
+            'variants.*.gallary.*' => 'nullable|image|max:2048', // Ảnh phụ có thể không bắt buộc
         ];
     }
 }

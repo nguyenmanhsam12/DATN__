@@ -23,13 +23,12 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         $productId = $this->route('id');  //lấy id từ router
-
+        
         return [
             'name'=>['required','string','max:255',Rule::unique('products')->ignore($productId)],
             'description' => 'required|string|max:1000',
-            'brand_id' => 'required|exists:brands,id',
-            'category_id' => 'required|exists:categories,id',
-            
+            'brand_id' => 'required|integer|exists:brands,id',
+            'category_id' => 'required|integer|exists:categories,id',
         ];
     }
 }
